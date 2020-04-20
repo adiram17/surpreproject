@@ -1,0 +1,128 @@
+{% extends 'layout/app.html' %}
+
+{% load static %}
+
+{% block body %}
+<div id="content-wrapper">
+    <div class="container-fluid">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+
+        <h2>Penilaian</h2>
+        <form id="score-form" action="/surpre/scorepost" method="POST">
+            {% csrf_token %}
+            <div class="ml-3 mr-3">
+
+                <div class="form-group">
+                    <input type="text" class="form-control" id="name" placeholder="Nama Start-Up/UMKM">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="productname" placeholder="Nama Produk">
+                </div>
+
+            </div>
+
+            <div class="mb-3 mr-3 ml-3">
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <div class="mb-0">
+                                <a class="btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                    aria-controls="collapseOne">
+                                    User Sentiment State
+                                </a>
+                            </div>
+                        </div>
+
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
+                                quinoa
+                                nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
+                                single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
+                                beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                                vice
+                                lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
+                                probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <div class="mb-0">
+                                <a class="btn collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                                    aria-expanded="false" aria-controls="collapseTwo">
+                                    Informasi Start-up Company
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
+                                quinoa
+                                nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
+                                single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
+                                beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                                vice
+                                lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
+                                probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <div class="mb-0">
+                                <a class="btn collapsed" data-toggle="collapse" data-target="#collapseThree"
+                                    aria-expanded="false" aria-controls="collapseThree">
+                                    Informasi Platform Company
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                            data-parent="#accordion">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
+                                quinoa
+                                nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
+                                single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
+                                beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                                vice
+                                lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
+                                probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ml-3 mr-3">
+                <div class=" text-center mb-3">
+                    <button type="reset" class="btn btn-danger">Reset</button>
+                    <button type="submit" name="calculate" class="btn btn-primary">Hitung</button>
+                </div>
+                <div>
+                    <p>User sentiment: -</p>
+                    <p>Informasi Start-up Company: -</p>
+                    <p>Informasi Platform Company: -</p>
+                    <p>Total skor: -, Level sukses: -</p>
+                </div>
+            </div>
+            <div class="text-center ml-3 mr-3 mb-3">
+                <button type="submit" name="draft" class="btn btn-warning">Simpan Draft</button>
+                <button type="submit" name="save" class="btn btn-success">Simpan</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+</div>
+{% endblock %}
+{% block javascript %}
+
+{% endblock %}

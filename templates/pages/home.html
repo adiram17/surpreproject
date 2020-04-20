@@ -1,0 +1,45 @@
+{% extends 'layout/app.html' %}
+
+{% load static %}
+
+{% block body %}
+<div id="content-wrapper">
+    <div class="container-fluid">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+        <div class="text-center mb-3 ml-3 mr-3">
+            <img src="{%static 'images/logo.JPG'%}"></img>
+            <p>Aplikasi Prediksi Produk Berprospek Pasar Online</p>
+        </div>
+
+        <div class="text-center ml-3 mr-3">
+            <div class="mb-3">
+                <a type="button" href="{%url 'score'%}" class="btn btn-primary btn-lg btn-block">Penilaian</a>
+            </div>
+            <div class="mb-3">
+                <a type="button" href="{%url 'about'%}" class="btn btn-primary btn-lg btn-block" >Tentang SurPre</a>
+            </div>
+            <div class="mb-3">
+                <a type="button" href="{%url 'scoreattribute'%}" class="btn btn-primary btn-lg btn-block">Atribut Penilai</a>
+            </div>
+            <div class="mb-3">
+                <a type="button" href="{%url 'scorescale'%}" class="btn btn-primary btn-lg btn-block">Skala Penilaian</a>
+            </div>
+            <div class="mb-3">
+                <a type="button" href="{%url 'scorelevel'%}" class="btn btn-primary btn-lg btn-block">Skor Level</a>
+            </div>
+            <div>
+                <a type="button" href="{%url 'test'%}" class="btn btn-primary btn-lg btn-block">Test</a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+{% block javascript %}
+
+{% endblock %}

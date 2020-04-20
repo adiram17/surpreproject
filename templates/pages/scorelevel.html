@@ -1,0 +1,62 @@
+{% extends 'layout/app.html' %}
+
+{% load static %}
+
+{% block body %}
+<div id="content-wrapper">
+    <div class="container-fluid">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+
+        <h2>Skor Level</h2>
+        <p>Level sukses merupakan hasil prediksi prospek pasar online suatu produk berdasarkan skor level yang
+            dihasilkan oleh suatu desain produk teknologi.</p>
+        <p>Skor level berupa total skor yang dihasilkan dari perhitungan model prediksi.</p>
+        <p>Rumus:</p>
+        <div class="text-center">
+            <p>Tabel. Level sukses desain produk di pasar online</p>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Total Skor</th>
+                        <th scope="col">Level Sukses</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>&lt;100</td>
+                        <td>Tidak sukses</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>100-120</td>
+                        <td>Sukses</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>&gt;120</td>
+                        <td>Sangat Sukses</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="text-center ml-3 mr-3">
+            <div class="mb-3">
+                <a type="button" class="btn btn-primary btn-lg btn-block" href="{%url 'home'%}">Beranda</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+{% endblock %}
+{% block javascript %}
+
+{% endblock %}

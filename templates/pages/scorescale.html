@@ -1,0 +1,70 @@
+{% extends 'layout/app.html' %}
+
+{% load static %}
+
+{% block body %}
+<div id="content-wrapper">
+    <div class="container-fluid">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+
+        <h2>Skala Penilaian</h2>
+        <p>Skala penilaian berupa skala likert.</p>
+        <p>Skala penilaian:</p>
+        <p>Wajib untuk mengisi nilai pada kolom penilaian yang telah ditentukan untuk menentukan skor setiap variabel.
+        </p>
+
+        <div>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Rumus Skor:</p>
+        <div class="text-center">
+            <p>&alpha; + &beta; = &gamma;</p>
+        </div>
+
+        <div class="text-center ml-3 mr-3">
+            <div class="mb-3">
+                <a type="button" class="btn btn-primary btn-lg btn-block" href="{%url 'home'%}">Beranda</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+{% endblock %}
+{% block javascript %}
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'layout/app.html' %}
+
+{% load static %}
+
+{% block body %}
+<div id="content-wrapper">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+{% block javascript %}
+
+{% endblock %}
