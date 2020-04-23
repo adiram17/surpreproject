@@ -25,7 +25,7 @@ SECRET_KEY = 'h7o1ah3ge6xak-*ac$8^c%gxsu_!9g7cm8u6f@=jjn*70%%lfp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.1.6", "127.0.0.1"]
+ALLOWED_HOSTS = ['adiram17.pythonanywhere.com']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'surpreapp'
 ]
 
 MIDDLEWARE = [
@@ -76,9 +77,13 @@ WSGI_APPLICATION = 'surpreproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+      'ENGINE': 'django.db.backends.mysql',
+      'NAME': 'surpredb',
+      'USER': 'surpre',
+      'PASSWORD': 'xxxxxx',
+      'HOST': 'localhost',
+      'PORT': '3306',
+  }
 }
 
 
@@ -120,7 +125,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_URL = '/login/'
+LOGIN_URL = '/surpre/login/'
 
 LOGIN_REDIRECT_URL = 'home'
 
