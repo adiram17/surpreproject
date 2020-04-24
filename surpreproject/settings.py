@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'surpreproject.wsgi.application'
 DATABASES = {
     'default': {
       'ENGINE': 'django.db.backends.mysql',
-      'NAME': 'surpredb',
-      'USER': 'surpre',
-      'PASSWORD': 'xxxxxx',
-      'HOST': 'localhost',
+      'NAME': 'adiram17$surpredb',
+      'USER': 'adiram17',
+      'PASSWORD': 'u9J1qEz8',
+      'HOST': 'adiram17.mysql.pythonanywhere-services.com',
       'PORT': '3306',
   }
 }

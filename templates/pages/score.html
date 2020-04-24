@@ -23,6 +23,7 @@
                     <input type="text" class="form-control" id="productname" placeholder="Nama Produk"
                         value="{{productname}}" name="productname">
                 </div>
+                <p>Tanggal prediksi: {{calculatedate}}</p>
             </div>
 
             <div class="mb-3 mr-3 ml-3">
@@ -149,8 +150,9 @@
                     <p>User sentiment: {{sentimentscore}}</p>
                     <p>Informasi Start-up Company: {{infostartupscore}}</p>
                     <p>Informasi Platform Company: {{infoplatformscore}}</p>
-                    <p>Total skor: {{totalscore}}, Level sukses: {{scorecategory}}</p>
-                    <p>Tanggal prediksi: {{calculatedate}}</p>
+                    <p><strong>Total skor: {{totalscore}}</strong></p>
+                    <p><strong>Level sukses: {{scorecategory}}</strong></p>
+                    
                 </div>
             </div>
             <div class="text-center ml-3 mr-3 mb-3">

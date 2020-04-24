@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.views import PasswordChangeDoneView
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_protect
 from .models import Score, Attribute, AttributeScore, Choice
@@ -10,6 +13,24 @@ from datetime import date
 @login_required
 def home(request):
     return render(request, 'pages/home.html', {})
+
+@login_required
+def changePassword(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Pembaharuan sandi berhasil.')
+            return redirect('home')
+        else:
+            messages.error(request, 'Pembaharuan sandi dibatalkan.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'change_password.html', {
+        'form': form
+    })
+
 
 @login_required
 def score(request):
@@ -33,10 +54,16 @@ def score(request):
     if (score!=None):
         startupname=score.startupname
         productname=score.productname
+        calculatedate=score.calculatedate
+        scorecategory=score.scorecategory
         if (score.startupname==None):
             startupname=""
         if (score.productname==None):
             productname=""
+        if (score.calculatedate==None):
+            calculatedate=""
+        if (score.scorecategory==None):
+            scorecategory=""
         sentimentscore=score.sentimentscore
         infostartupscore=score.infostartupscore
         infoplatformscore=score.infoplatformscore
@@ -44,9 +71,6 @@ def score(request):
         status=score.status
         changeby=score.changeby
         changetime=score.changetime
-        calculatedate=score.calculatedate
-        scorecategory=score.scorecategory
-        
         sentimentattributes = AttributeScore.objects.all().filter(attributetype="sentiment", score_id=score.id)
         infostartupattributes = AttributeScore.objects.all().filter(attributetype="infostartup", score_id=score.id)
         infoplatformattributes = AttributeScore.objects.all().filter(attributetype="infoplatform", score_id=score.id)
@@ -95,6 +119,11 @@ def scorescale(request):
 @login_required
 def scorelevel(request):
     return render(request, 'pages/scorelevel.html', {})
+
+@login_required
+def scorehistory(request):
+    scores=Score.objects.filter(status="COMPLETE", changeby=request.user.username).order_by('-calculatedate')
+    return render(request, 'pages/scorehistory.html', {"scores":scores})
 
 @login_required
 def test(request):

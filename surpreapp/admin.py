@@ -24,3 +24,4 @@ class ScoreAdmin(admin.ModelAdmin):
 admin.site.register(Score, ScoreAdmin)
 
 admin.site.site_header = "SurPre Admin"
+admin.site.site_url = "/surpre"
