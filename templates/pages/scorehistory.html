@@ -1,0 +1,54 @@
+{% extends 'layout/app.html' %}
+
+{% load static %}
+
+{% block body %}
+<div id="content-wrapper">
+    <div class="container-fluid">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+
+        <h2>Riwayat Penilaian</h2>
+        <div class="text-center">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Nama Startup</th>
+                        <th scope="col">Nama Produk</th>
+                        <th scope="col">Waktu Prediksi</th>
+                        <th scope="col">Total Skor</th>
+                        <th scope="col">Level Sukses</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for score in scores%}
+                    <tr>
+                        <th scope="row">{{score.startupname}}</th>
+                        <td>{{score.productname}}</td>
+                        <td>{{score.calculatedate}}</td>
+                        <td>{{score.totalscore}}</td>
+                        <td>{{score.scorecategory}}</td>
+                    </tr>
+                    {%endfor%}
+                    
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="text-center ml-3 mr-3">
+            <div class="mb-3">
+                <a type="button" class="btn btn-primary btn-lg btn-block" href="{%url 'home'%}">Beranda</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+{% endblock %}
+{% block javascript %}
+
+{% endblock %}
