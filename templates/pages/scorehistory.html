@@ -11,34 +11,32 @@
         </div>
         {% endfor %}
 
-        <h2>Riwayat Penilaian</h2>
-        <div class="text-center">
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Nama Startup</th>
-                        <th scope="col">Nama Produk</th>
-                        <th scope="col">Waktu Prediksi</th>
-                        <th scope="col">Total Skor</th>
-                        <th scope="col">Level Sukses</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {%for score in scores%}
-                    <tr>
-                        <th scope="row">{{score.startupname}}</th>
-                        <td>{{score.productname}}</td>
-                        <td>{{score.calculatedate}}</td>
-                        <td>{{score.totalscore}}</td>
-                        <td>{{score.scorecategory}}</td>
-                    </tr>
-                    {%endfor%}
-                    
-                </tbody>
-            </table>
+        <div class="">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th scope="col">Riwayat Penilaian</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for score in scores%}
+                        <tr>
+                            <td>
+                                <div>
+                                <p><strong>{{score.startupname}}</strong></p>
+                                <p><strong>{{score.productname}}</strong></p>
+                                <p><small>Skor total: {{score.totalscore}}</small></p>
+                                <p><small>Waktu prediksi: {{score.calculatedate}}</small></p>
+                                <p><small>Level skor: {{score.scorecategory}}</small></p>
+                                </div>
+                            </td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
         </div>
-
-
         <div class="text-center ml-3 mr-3">
             <div class="mb-3">
                 <a type="button" class="btn btn-primary btn-lg btn-block" href="{%url 'home'%}">Beranda</a>
