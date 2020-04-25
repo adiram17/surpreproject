@@ -89,6 +89,13 @@
     $(".alert-error").fadeTo(2000, 500).slideUp(500, function(){
         $(".alert-error").slideUp(500);
     });
+    $(document).ready(function () {
+        $('#table').DataTable({
+            "searching": false,
+            "paging": false,
+            "info": false
+        });
+    });
 </script>
 
 {% block javascript %}{% endblock %}
