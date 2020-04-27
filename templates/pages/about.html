@@ -4,21 +4,21 @@
 
 {% block body %}
 <div id="content-wrapper">
-    <div class="container-fluid">
+    <div class="container-fluid ">
         {% for message in messages %}
         <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
             {{ message }}
         </div>
         {% endfor %}
-        
-        <h2>Tentang SurPre</h2>
+
+        <h4>Tentang SurPre</h4>
         <p>Aplikasi SP merupakan aplikasi untuk menilai prospek online suatu desain produk teknologi dari hasil
             kreativitas start-up company.Prospek online merupakan peluang suatu produk ketika didistribusikan atau
             dipasarkan dalam pasar online.</p>
 
         <div class="text-center ml-3 mr-3">
-            <div class="mb-3">
-                <a type="button" class="btn btn-primary btn-lg btn-block" href="{%url 'home'%}">Beranda</a>
+            <div class="mb-2">
+                <a type="button" class="btn btn-primary btn-block" href="{%url 'home'%}">Beranda</a>
             </div>
         </div>
 
