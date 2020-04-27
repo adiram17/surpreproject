@@ -15,13 +15,15 @@
         <form id="score-form" action="/surpre/scorepost" method="POST">
             {% csrf_token %}
             <div class="ml-3 mr-3">
-                <div class="form-group">
+                <div class="form-label-group mb-3">
                     <input type="text" class="form-control" id="startupname" placeholder="Nama Start-Up/UMKM"
-                        value="{{startupname}}" name="startupname">
+                        value="{{startupname}}" name="startupname" autofocus>
+                    <label for="startupname">Nama Start-Up/UMKM</label>
                 </div>
-                <div class="form-group">
+                <div class="form-label-group mb-3">
                     <input type="text" class="form-control" id="productname" placeholder="Nama Produk"
-                        value="{{productname}}" name="productname">
+                        value="{{productname}}" name="productname" autofocus>
+                    <label for="productname">Nama Produk</label>
                 </div>
                 <p>Tanggal prediksi: {{calculatedate}}</p>
             </div>
