@@ -25,142 +25,120 @@
                         value="{{productname}}" name="productname" autofocus>
                     <label for="productname">Nama Produk</label>
                 </div>
-                <p>Tanggal prediksi: {{calculatedate}}</p>
+                <p class="small">Tanggal prediksi: {{calculatedate}}</p>
             </div>
-
-            <div class="mb-1 mr-3 ml-3 small">
-                <div id="accordion">
-                    <div class="card">
-                        <div class="card-header  " id="headingOne">
-                            <div class="">
-                                <a class="btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                                    aria-controls="collapseOne">
-                                    User Sentiment State
-                                </a>
-                            </div>
-                        </div>
-
-                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                            <div class="card-body">
-                                <p>Skala Penilaian: (1) sangat tidak lengkap; (2) tidak lengkap; (3) cukup lengkap; (4)
-                                    lengkap; (5) sangat lengkap </p>
-                                {%for sentimentattribute in sentimentattributes%}
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <p>{{sentimentattribute.name}}:
-                                            {% for choice in choices %}
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio"
-                                                    name="inlineRadioOptions{{sentimentattribute.id}}" id="inlineRadio1"
-                                                    value="{{ choice.value }}"
-                                                    {%if sentimentattribute.value is choice.value %}checked{%endif%}>
-                                                <label class="form-check-label"
-                                                    for="inlineRadio1">{{ choice.value }}</label>
-                                            </div>
-                                            {% endfor %}
-                                        </p>
-                                    </div>
+            
+            <div class="accordion mb-1 mr-3 ml-3 small" id="accordionid">
+                <div class="mb-1">
+                    <button class="btn btn-secondary btn-sm btn-block collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" >
+                        User Sentiment State
+                    </button>
+                    <div class="collapse mb-1" id="collapseOne">
+                        <div class="card-body" data-parent="#accordionid">
+                            <p>Skala Penilaian: (1) sangat tidak lengkap; (2) tidak lengkap; (3) cukup lengkap; (4)
+                                lengkap; (5) sangat lengkap </p>
+                            {%for sentimentattribute in sentimentattributes%}
+                            <div class="row">
+                                <div class="col-sm">
+                                    <p class="mb-1" >{{sentimentattribute.name}}:
+                                        {% for choice in choices %}
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input " type="radio"
+                                                name="inlineRadioOptions{{sentimentattribute.id}}" id="inlineRadio1"
+                                                value="{{ choice.value }}"
+                                                {%if sentimentattribute.value is choice.value %}checked{%endif%}>
+                                            <label class="form-check-label "
+                                                for="inlineRadio1">{{ choice.value }}</label>
+                                        </div>
+                                        {% endfor %}
+                                    </p>
                                 </div>
-                                {%endfor%}
-
                             </div>
+                            {%endfor%}
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header" id="headingTwo">
-                            <div class="mb-0">
-                                <a class="btn collapsed" data-toggle="collapse" data-target="#collapseTwo"
-                                    aria-expanded="false" aria-controls="collapseTwo">
-                                    Informasi Start-up Company
-                                </a>
-                            </div>
-                        </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                            <div class="card-body">
-                                <p>Skala Penilaian: (1) sangat tidak lengkap; (2) tidak lengkap; (3) cukup lengkap; (4)
-                                    lengkap; (5) sangat lengkap </p>
-                                {%for infostartupattribute in infostartupattributes%}
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <p>{{infostartupattribute.name}}:
-                                            {% for choice in choices %}
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio"
-                                                    name="inlineRadioOptions{{infostartupattribute.id}}"
-                                                    id="inlineRadio1" value="{{ choice.value }}"
-                                                    {%if infostartupattribute.value is choice.value %}checked{%endif%}>
-                                                <label class="form-check-label"
-                                                    for="inlineRadio1">{{ choice.value }}</label>
-                                            </div>
-                                            {% endfor %}
-                                        </p>
-                                    </div>
+                </div>
+                <div class="mb-1">
+                    <button class="btn btn-secondary btn-sm btn-block collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" data-parent="#accordionid">
+                        Informasi Start-up Company
+                    </button>
+                    <div class="collapse" id="collapseTwo" data-parent="#accordionid">
+                        <div class="card-body">
+                            <p>Skala Penilaian: (1) sangat tidak lengkap; (2) tidak lengkap; (3) cukup lengkap; (4)
+                                lengkap; (5) sangat lengkap </p>
+                            {%for infostartupattribute in infostartupattributes%}
+                            <div class="row">
+                                <div class="col-sm">
+                                    <p class="mb-1" >{{infostartupattribute.name}}:
+                                        {% for choice in choices %}
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input " type="radio"
+                                                name="inlineRadioOptions{{infostartupattribute.id}}" id="inlineRadio1"
+                                                value="{{ choice.value }}"
+                                                {%if infostartupattribute.value is choice.value %}checked{%endif%}>
+                                            <label class="form-check-label "
+                                                for="inlineRadio1">{{ choice.value }}</label>
+                                        </div>
+                                        {% endfor %}
+                                    </p>
                                 </div>
-                                {%endfor%}
-
                             </div>
+                            {%endfor%}
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header" id="headingThree">
-                            <div class="mb-0">
-                                <a class="btn collapsed" data-toggle="collapse" data-target="#collapseThree"
-                                    aria-expanded="false" aria-controls="collapseThree">
-                                    Informasi Platform Company
-                                </a>
-                            </div>
-                        </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                            <div class="card-body">
-
-                                <p>Skala Penilaian: (1) sangat tidak lengkap; (2) tidak lengkap; (3) cukup lengkap; (4)
-                                    lengkap; (5) sangat lengkap </p>
-                                {%for infoplatformattribute in infoplatformattributes%}
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <p>{{infoplatformattribute.name}}:
-                                            {% for choice in choices %}
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio"
-                                                    name="inlineRadioOptions{{infoplatformattribute.id}}"
-                                                    id="inlineRadio1" value="{{ choice.value }}"
-                                                    {%if infoplatformattribute.value is choice.value %}checked{%endif%}>
-                                                <label class="form-check-label"
-                                                    for="inlineRadio1">{{ choice.value }}</label>
-                                            </div>
-                                            {% endfor %}
-                                        </p>
-                                    </div>
+                </div>
+                <div class="mb-1">
+                    <button class="btn btn-secondary btn-sm btn-block collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" data-parent="#accordionid">
+                        Informasi Platform Company
+                    </button>
+                    <div class="collapse" id="collapseThree" data-parent="#accordionid">
+                        <div class="card-body">
+                            <p>Skala Penilaian: (1) sangat tidak lengkap; (2) tidak lengkap; (3) cukup lengkap; (4)
+                                lengkap; (5) sangat lengkap </p>
+                            {%for infoplatformattribute in infoplatformattributes%}
+                            <div class="row">
+                                <div class="col-sm">
+                                    <p class="mb-1" >{{infoplatformattribute.name}}:
+                                        {% for choice in choices %}
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input " type="radio"
+                                                name="inlineRadioOptions{{infoplatformattribute.id}}" id="inlineRadio1"
+                                                value="{{ choice.value }}"
+                                                {%if infoplatformattribute.value is choice.value %}checked{%endif%}>
+                                            <label class="form-check-label "
+                                                for="inlineRadio1">{{ choice.value }}</label>
+                                        </div>
+                                        {% endfor %}
+                                    </p>
                                 </div>
-                                {%endfor%}
-
                             </div>
+                            {%endfor%}
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="ml-3 mr-3">
                 <div class=" text-center mb-1">
-                    <a href="" class="btn btn-danger" data-toggle="modal" data-target="#resetScoreModal">Reset</a>
-                    <button type="submit" name="calculate" class="btn btn-primary">Hitung</button>
+                    <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#resetScoreModal">Reset</a>
+                    <button type="submit" name="calculate" class="btn btn-primary btn-sm">Hitung</button>
                 </div>
                 <div>
-                    <p>User sentiment: {{sentimentscore}}</br>
+                    <p class="small">User Sentiment: {{sentimentscore}}</br>
                         Informasi Start-up Company: {{infostartupscore}}</br>
                         Informasi Platform Company: {{infoplatformscore}}
                     </p>
-
-                    <p><strong>Total skor: {{totalscore}}</br>
+                    <p class="small"><strong>Total skor: {{totalscore}}</br>
                             Level sukses: {{scorecategory}}</strong></p>
-
                 </div>
             </div>
 
-            <canvas class="" id="myChart" ></canvas>
+            <canvas class="" id="myChart"></canvas>
 
             <div class="text-center ml-3 mr-3 mb-1">
-                <a href="" class="btn btn-success" data-toggle="modal" data-target="#saveScoreModal">Simpan</a>
+                <a href="" class="btn btn-success btn-sm" data-toggle="modal" data-target="#saveScoreModal">Simpan</a>
             </div>
 
             <!-- Save Score Modal-->
