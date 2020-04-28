@@ -82,6 +82,9 @@ def score(request):
         for attribute in attributes:
             newAttributeScore= AttributeScore(name=attribute.name, attributetype=attribute.attributetype, score_id=newScore.id)
             newAttributeScore.save()
+        sentimentattributes = AttributeScore.objects.all().filter(attributetype="sentiment", score_id=newScore.id)
+        infostartupattributes = AttributeScore.objects.all().filter(attributetype="infostartup", score_id=newScore.id)
+        infoplatformattributes = AttributeScore.objects.all().filter(attributetype="infoplatform", score_id=newScore.id)
 
     return render(request, 'pages/score.html', {
         'startupname':startupname, 
