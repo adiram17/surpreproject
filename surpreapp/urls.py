@@ -14,6 +14,8 @@ urlpatterns = [
     url(r'^test$', views.test, name='test'),
     url(r'^getmessage$', views.getmessage, name='getmessage'),
     url(r'^scorepost$', views.scorepost, name='scorepost'),
+
+    url(r'^report/generatescoregraph', views.generateScoreGraph, name='generate_score_graph'),
     
 ]
 

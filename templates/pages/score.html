@@ -27,11 +27,11 @@
                 </div>
                 <p class="small">Tanggal prediksi: {{calculatedate}}</p>
             </div>
-            
+
             <div class="accordion mb-1 mr-3 ml-3 small" id="accordionid">
                 <div class="mb-1">
                     <button class="btn btn-secondary btn-sm btn-block collapsed" type="button" data-toggle="collapse"
-                        data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" >
+                        data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                         User Sentiment State
                     </button>
                     <div class="collapse mb-1" id="collapseOne">
@@ -41,7 +41,7 @@
                             {%for sentimentattribute in sentimentattributes%}
                             <div class="row">
                                 <div class="col-sm">
-                                    <p class="mb-1" >{{sentimentattribute.name}}:
+                                    <p class="mb-1">{{sentimentattribute.name}}:
                                         {% for choice in choices %}
                                         <div class="form-check form-check-inline ">
                                             <input class="form-check-input " type="radio"
@@ -61,7 +61,8 @@
                 </div>
                 <div class="mb-1">
                     <button class="btn btn-secondary btn-sm btn-block collapsed" type="button" data-toggle="collapse"
-                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" data-parent="#accordionid">
+                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"
+                        data-parent="#accordionid">
                         Informasi Start-up Company
                     </button>
                     <div class="collapse" id="collapseTwo" data-parent="#accordionid">
@@ -71,7 +72,7 @@
                             {%for infostartupattribute in infostartupattributes%}
                             <div class="row">
                                 <div class="col-sm">
-                                    <p class="mb-1" >{{infostartupattribute.name}}:
+                                    <p class="mb-1">{{infostartupattribute.name}}:
                                         {% for choice in choices %}
                                         <div class="form-check form-check-inline ">
                                             <input class="form-check-input " type="radio"
@@ -91,7 +92,8 @@
                 </div>
                 <div class="mb-1">
                     <button class="btn btn-secondary btn-sm btn-block collapsed" type="button" data-toggle="collapse"
-                        data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" data-parent="#accordionid">
+                        data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
+                        data-parent="#accordionid">
                         Informasi Platform Company
                     </button>
                     <div class="collapse" id="collapseThree" data-parent="#accordionid">
@@ -101,7 +103,7 @@
                             {%for infoplatformattribute in infoplatformattributes%}
                             <div class="row">
                                 <div class="col-sm">
-                                    <p class="mb-1" >{{infoplatformattribute.name}}:
+                                    <p class="mb-1">{{infoplatformattribute.name}}:
                                         {% for choice in choices %}
                                         <div class="form-check form-check-inline ">
                                             <input class="form-check-input " type="radio"
@@ -122,7 +124,8 @@
             </div>
             <div class="ml-3 mr-3">
                 <div class=" text-center mb-1">
-                    <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#resetScoreModal">Reset</a>
+                    <a href="" class="btn btn-danger btn-sm" data-toggle="modal"
+                        data-target="#resetScoreModal">Reset</a>
                     <button type="submit" name="calculate" class="btn btn-primary btn-sm">Hitung</button>
                 </div>
                 <div>
@@ -135,7 +138,7 @@
                 </div>
             </div>
 
-            <canvas class="" id="myChart"></canvas>
+            <canvas id="myChart" data-url="{% url 'generate_score_graph' %}"></canvas>
 
             <div class="text-center ml-3 mr-3 mb-1">
                 <a href="" class="btn btn-success btn-sm" data-toggle="modal" data-target="#saveScoreModal">Simpan</a>
@@ -190,57 +193,79 @@
 {% endblock %}
 {% block javascript %}
 <script>
-    var ctx = document.getElementById("myChart");
-    var myChart = new Chart(ctx, {
-        type: 'scatter',
-        data: {
-            datasets: [{
-                label: 'Scatter Plot',
-                data: [{
-                    x: 5,
-                    y: 3,
-                }, {
-                    x: 2,
-                    y: 4,
-                }, {
-                    x: 4,
-                    y: 6,
-                }, {
-                    x: 3,
-                    y: 7,
-                }, {
-                    x: 7,
-                    y: 5,
-                }],
-                pointBackgroundColor: 'blue',
-                pointBorderColor: 'darkblue',
-                pointRadius: 5,
-                pointHoverRadius: 5
+    $(function () {
+        var $scoreGraph = $("#myChart");
+        $.ajax({
+            url: $scoreGraph.data("url"),
+            success: function (data) {
+                var ctx = $scoreGraph[0].getContext("2d");
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: data.attrindex,
+                        datasets: [{
+                            label: 'User Sentiment',
+                            borderColor: 'green',
+                            pointBackgroundColor: 'green',
+                            fill: false,
+                            lineTension: 0,
+                            data: data.usersentimentvalues,
+                        }, {
+                            label: 'Info Startup',
+                            borderColor: 'orange',
+                            pointBackgroundColor: 'orange',
+                            fill: false,
+                            lineTension: 0,
+                            data: data.infostartupvalues,
+                        }, {
+                            label: 'Info Platform',
+                            borderColor: 'blue',
+                            pointBackgroundColor: 'blue',
+                            fill: false,
+                            lineTension: 0,
+                            data: data.infoplatformvalues,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Score Attribute Values'
+                        },
+                        scales: {
+                            xAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Attribute'
+                                },
+                                ticks: {
+                                    min: 0, //min
+                                    max: 5, //max 
+                                    stepSize: 1
+                                }
+                            }],
+                            yAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Score'
+                                },
+                                ticks: {
+                                    min: 0,
+                                    max: 5,
+                                    stepSize: 1
+                                }
+                            }],
 
-            }]
-        },
-        options: {
-            legend: false,
-            scales: {
-                xAxes: [{
-                    display: true,
-                    ticks: {
-                        suggestedMin: 0, //min
-                        suggestedMax: 10 //max 
+                        }
                     }
-                }],
-                yAxes: [{
-                    display: true,
-                    ticks: {
-                        suggestedMin: 0, //min
-                        suggestedMax: 10 //max 
-                    }
-                }]
-
+                });
 
             }
-
         }
+        )
     });
 </script>
 

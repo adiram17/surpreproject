@@ -5,6 +5,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import PasswordChangeDoneView
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_protect
+from django.http import JsonResponse
 from .models import Score, Attribute, AttributeScore, Choice
 from django.utils import timezone
 from datetime import date
@@ -146,6 +147,33 @@ def calculateScore(scoreid, attributetype):
     for attributeScore in attributeScores:
         retval+=attributeScore.value
     return retval
+
+
+@csrf_protect
+def generateScoreGraph(request):
+    attrindex=[]
+    usersentimentvalues=[]
+    infostartupvalues=[]
+    infoplatformvalues=[]
+    score = Score.objects.filter(status="DRAFT", changeby=request.user.username).first()
+
+    if (score!=None):
+        scoreid=score.id
+        userSentimentAttributeScores = AttributeScore.objects.filter(score_id=scoreid, attributetype="sentiment")
+        i=0
+        for attributeScore in userSentimentAttributeScores:
+            i=i+1
+            attrindex.append(i)
+            usersentimentvalues.append(attributeScore.value)
+
+        infoStartupAttributeScores = AttributeScore.objects.filter(score_id=scoreid, attributetype="infostartup")
+        for attributeScore in infoStartupAttributeScores:
+            infostartupvalues.append(attributeScore.value)
+
+        infoPlatformAttributeScores = AttributeScore.objects.filter(score_id=scoreid, attributetype="infoplatform")
+        for attributeScore in infoPlatformAttributeScores:
+            infoplatformvalues.append(attributeScore.value)
+    return JsonResponse(data={"attrindex": attrindex, "usersentimentvalues":usersentimentvalues, "infostartupvalues":infostartupvalues, "infoplatformvalues":infoplatformvalues})
 
 @csrf_protect
 def scorepost(request):
