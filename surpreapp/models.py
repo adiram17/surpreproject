@@ -23,7 +23,12 @@ class Score(models.Model):
     def __unicode__(self):
         return self.startupname
     def __str__(self):
-        return self.startupname
+        if (self.startupname!=None or self.productname!=None):
+            return str(self.startupname)+" - "+ self.startupname
+        else:
+            return ""
+
+        
 
 class Attribute(models.Model):
     name = models.TextField(db_column='name', max_length=500, blank=False)
