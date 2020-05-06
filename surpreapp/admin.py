@@ -20,7 +20,7 @@ class ChoiceAdmin(admin.ModelAdmin):
 admin.site.register(Choice, ChoiceAdmin)
 
 class ScoreAdmin(admin.ModelAdmin):
-    list_display = ('startupname', 'productname', 'totalscore', 'status', 'changeby', 'changetime', 'calculatedate')
+    list_display = ('startupname', 'productname', 'totalscore', 'scorecategory','status', 'changeby', 'changetime', 'calculatedate')
 admin.site.register(Score, ScoreAdmin)
 
 class AttributeScoreAdmin(admin.ModelAdmin):
