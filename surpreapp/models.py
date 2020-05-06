@@ -24,7 +24,7 @@ class Score(models.Model):
         return self.startupname
     def __str__(self):
         if (self.startupname!=None or self.productname!=None):
-            return str(self.startupname)+" - "+ self.startupname
+            return str(self.startupname)+" - "+ str(self.productname)
         else:
             return ""
 
