@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Attribute, Choice, Score
+from .models import Attribute, Choice, Score, AttributeScore
 from django import forms
 
 # Register your models here.
@@ -22,6 +22,11 @@ admin.site.register(Choice, ChoiceAdmin)
 class ScoreAdmin(admin.ModelAdmin):
     list_display = ('startupname', 'productname', 'totalscore', 'status', 'changeby', 'changetime', 'calculatedate')
 admin.site.register(Score, ScoreAdmin)
+
+class AttributeScoreAdmin(admin.ModelAdmin):
+    list_display = ('score', 'attributetype','name', 'value')
+    ordering = ('score','-attributetype', 'name')
+admin.site.register(AttributeScore, AttributeScoreAdmin)
 
 admin.site.site_header = "SurPre Admin"
 admin.site.site_url = "/surpre"

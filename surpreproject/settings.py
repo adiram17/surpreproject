@@ -25,7 +25,7 @@ SECRET_KEY = 'h7o1ah3ge6xak-*ac$8^c%gxsu_!9g7cm8u6f@=jjn*70%%lfp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['adiram17.pythonanywhere.com']
+ALLOWED_HOSTS = ['prospekpasaronline.pythonanywhere.com']
 
 
 # Application definition
@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'surpreproject.wsgi.application'
 DATABASES = {
     'default': {
       'ENGINE': 'django.db.backends.mysql',
-      'NAME': 'adiram17$surpredb',
-      'USER': 'adiram17',
-      'PASSWORD': 'u9J1qEz8',
-      'HOST': 'adiram17.mysql.pythonanywhere-services.com',
+      'NAME': 'prospekpasaronli$surpredb',
+      'USER': 'prospekpasaronli',
+      'PASSWORD': '94tsK42p',
+      'HOST': 'prospekpasaronline.mysql.pythonanywhere-services.com',
       'PORT': '3306',
   }
 }
